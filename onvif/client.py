@@ -190,9 +190,9 @@ class ONVIFCamera(object):
 
     # Class-level variables
     services_template = {'devicemgmt': None, 'ptz': None, 'media': None,
-                         'imaging': None, 'events': None, 'analytics': None }
+                         'imaging': None, 'events': None, 'analytics': None , 'analytics_rules': None}
     use_services_template = {'devicemgmt': True, 'ptz': True, 'media': True,
-                         'imaging': True, 'events': True, 'analytics': True }
+                         'imaging': True, 'events': True, 'analytics': True , 'analytics_rules': True}
     def __init__(self, host, port ,user, passwd, wsdl_dir=os.path.join(os.path.dirname(os.path.dirname(__file__)), "wsdl"),
                  encrypt=True, daemon=False, no_cache=False, adjust_time=False, transport=None):
         os.environ.pop('http_proxy', None)
@@ -349,6 +349,9 @@ class ONVIFCamera(object):
 
     def create_analytics_service(self, from_template=True):
         return self.create_onvif_service('analytics', from_template)
+
+    def create_analytics_rules_service(self, from_template=True):
+        return self.create_onvif_service('analytics_rules', from_template)
 
     def create_recording_service(self, from_template=True):
         return self.create_onvif_service('recording', from_template)
